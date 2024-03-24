@@ -14,3 +14,32 @@ metode bisa POST / GET / ADD / DELETE
 
 "index" = Method index yang terdapat pada Home
         "cari pada file Home"
+
+=========================
+Membuar folder pada file controler
+>controler
+  > admin
+    Home.php
+
+====
+index.php 
+
+<?php
+//arahkan namespace he folder admin
+namespace App\Controllers\admin;
+//use Base Controllers pada controler
+use App/controler/BaseController;
+class Home extends BaseController
+{
+    public function index(): string
+    {
+        return view('welcome_message');
+        // echo "hello world";
+        
+    }
+}
+
+=======
+ubah setingan router
+
+$routes->get('/admin', 'admin/Home::index');
