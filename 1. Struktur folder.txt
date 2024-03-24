@@ -1,0 +1,36 @@
+> App
+ Folder inti
+=> yang biasanya dipakai
+> Controllers
+> Models
+> Views
+> Config
+  =>Router
+  =>App
+  =>Databases
+=============================
+>Public
+ Folder tempat menyimpan assets
+  - Gambar
+  - Css / Js
+  - Font
+============================
+> test
+ Folder testing
+============================
+> vendor
+ Folder dependenci yang akan berisi dependenci yang akan digunakan dalam aplikasi
+============================
+============================
+ENVIRONTMENT
+=> rename file env dengan .env agar menjadi file config
+
+agar aman copy aja 😂
+
+.env
+
+=>cari skrip kemudian gunakan salah 
+  CI-Environtment = depelopment / CI-Environtment = deploy /CI-Environtment = testing
+
+  app.baseURL= "masukan url dari server atau dari hosting "
+app.baseURL= "https// localhost/8080"

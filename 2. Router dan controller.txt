@@ -1,0 +1,16 @@
+=> masuk ke config > router
+ 
+$router ->get ('/',"home :: index");
+
+artinya jika ada yang mengakse url / maka arahkan ke controller Home kemudian jalankan method index
+
+=>bisa memiliki banyak router
+
+metode bisa POST / GET / ADD / DELETE
+
+'/' = url contohnya bisa diganti '/adminn'
+'Home' = controller Home
+        "cari di folder controler di config"
+
+"index" = Method index yang terdapat pada Home
+        "cari pada file Home"

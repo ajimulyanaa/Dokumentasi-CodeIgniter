@@ -1,0 +1,4 @@
+buka websit packagis yitu untuk mendowload package yang disediakan composer
+
+
+faker = untuk mengambil data palsu

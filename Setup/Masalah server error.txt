@@ -1,0 +1,15 @@
+Guys untuk permasalahan pada saat install ci4 di git yang error' atau problem 1
+
+1. Buka control panel XAMPP
+2. di baris apache klik config (bukan config yang ada gambar obeng🔧) 
+3. PHP.ini(buka pake notepad/sebagainya)
+4 CTRL+f lalu cari ;extension=intl
+5. lalu hapus titik koma (menjadi extension=intl) 
+6.terus save lalu install ulang ci4 nya
+
+
+================================
+UPDATE CI 4.4 itu gak bisa akses controller dan method secara langsung mungkin karena alasan keamanan dll. jika ingin tetap coba seperti yg di video bisa aktifkan autoRoute dahulu
+
+tambahkan ke Config/Routes.php
+$routes->setAutoRoute(true);
