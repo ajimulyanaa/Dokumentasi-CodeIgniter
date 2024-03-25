@@ -1,0 +1,88 @@
+// membuat temlate pad views
+1. membuat tamplate
+ => gabungkan kembali antara file header dan footer
+- masukan pada bagian body 
+//merender content dengan nama content
+<?=$this->renderSection('content');?>
+
+- buat content 
+ >pages
+  > home.php
+  //memanggil template 
+<?=$this->extend('templateLayout/template');?>
+//membuat content
+
+<?=$this->section('content');?>
+    <h1>Welcome to the jungle</h1>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Beatae ad sed dicta officiis! Assumenda in perspiciatis ipsa, voluptatem minima nam?</p>
+    <a href=""></a>
+<?=$this->endSection();?>
+
+//end content
+
+-edit method pada file pada controller
+ pages.php 
+ public function about()
+    {
+        // return view('pages/about');
+        // untuk mengirimkan data pada title
+        $data=[
+            'title'=>'About Me'
+        ];
+        //karena sudah bentuk template jadi cukup panggil 1 saja
+        return view('pages/about',$data);
+        
+    }
+===========================
+2. parsial / memanggil file lain pada templateLayout
+//contohnya memanggil file navigation
+-buat file
+navigation.php 
+- kemudian bisa panggil di templateLayout.php
+simpan dalam body
+<?=$this->include('templateLayout/navigation');?>
+//<?=$this->include('alamanfile');?>
+
+
+3. mengirimkan data berupa alamat pada view
+- tambahkan key baru di data
+public function contact()
+    {
+        // return view('pages/about');
+        // untuk mengirimkan data pada title
+        $data=[
+            'title'=>'Contact Me',
+            'alamat'=>[
+                [
+                    'tipe'=>'Rumah',
+                    'alamat'=>'Jl.kedong no.20',
+                ]
+                ,
+                [
+                    'tipe'=>'Kantor',
+                    'alamat'=>'Jl.bandara no.20',
+                ],
+                [
+                    'tipe'=>'Kosan',
+                    'alamat'=>'Jl.jagakarsa no.501',
+                ]
+            ]
+        ];
+        return view('pages/contact',$data);
+        
+    }
+
+- panggil data alamat di file contact
+<?=$this->extend('templateLayout/template');?>
+<?=$this->section('content');?>
+    <h1>Contact Me</h1>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Beatae ad sed dicta officiis! Assumenda in perspiciatis ipsa, voluptatem minima nam?</p>
+    //pemanggilan alamat dengan for endforeach
+    <?php foreach($alamat as $a) : ?>
+    <ul>
+        <li><?=$a['tipe'];?></li>
+        <li><?=$a['alamat'];?></li>
+    </ul>
+    <?php endforeach;  ?>
+    //end
+<?=$this->endSection();?>
