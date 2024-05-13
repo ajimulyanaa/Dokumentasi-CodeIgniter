@@ -1,0 +1,162 @@
+Model adalah untuk pemetaan data, meyediakan cara untuk berinteraksi dengan database.
+
+[[ BACA SELALU DOKUMENTASI UNTUK MODEL DI DOKUMENTASI CI ]]
+
+1. Buat controller untuk model
+   > controller
+       Komik.php
+
+2. Buat views untuk tampilan halaman
+   > views
+      > komik
+         index.php
+
+=> Buka dokumentasi model di ci
+
+BUAT DATABASE DI PHP MY-ADMIN
+
+   ===================
+date-time = data untuk waktu boleh diisi null
+
+
+
+
+      CONFIG ENVIRONMENT
+masuk ke .env
+ .env
+
+ - edit app.base url dengan url server
+   app.baseURL = 'http://localhost:8080'
+-edit bagian DATABASE
+ database.default.hostname = localhost
+================alternatif bila localhost tidak jalan
+# database.default.hostname = 127.0.0.1
+================nama data base jangan di spasi jangan di spasi
+===masukan nama database
+database.default.database = ci-4wpu
+atabase.default.username = root
+==========password xampp kosong kecuali mampp 'root'
+database.default.password = 
+database.default.DBDriver = MySQLi
+database.default.DBPrefix =
+database.default.port = 3306
+
+=========================================================================================
+Buat model untuk model
+>App
+  >Models
+    KomikModel.php
+
+===== Copas create model dari dokumentasi ci4 ====
+ (create model)
+
+<?php
+
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class UserModel extends Model
+{
+    // ...isi model
+// menyambungkan ke tabel database [tabel database tidak boleh ada spasi]
+//protected $DBGroup = 'namadatabasetable';
+protected $DBGroup = 'komik';
+
+==== isi sesuai kebutuhan ( baca panduan dokumentasi)
+protected $table      = 'users';
+    protected $primaryKey = 'id';
+
+    protected $useAutoIncrement = true;
+
+    protected $returnType     = 'array';
+    protected $useSoftDeletes = true;
+
+    protected $allowedFields = ['name', 'email'];
+
+    protected bool $allowEmptyInserts = false;
+    protected bool $updateOnlyChanged = true;
+
+    // Dates
+    protected $useTimestamps = false;
+    protected $dateFormat    = 'datetime';
+    protected $createdField  = 'created_at';
+    protected $updatedField  = 'updated_at';
+    protected $deletedField  = 'deleted_at';
+
+    // Validation
+    protected $validationRules      = [];
+    protected $validationMessages   = [];
+    protected $skipValidation       = false;
+    protected $cleanValidationRules = true;
+
+    // Callbacks
+    protected $allowCallbacks = true;
+    protected $beforeInsert   = [];
+    protected $afterInsert    = [];
+    protected $beforeUpdate   = [];
+    protected $afterUpdate    = [];
+    protected $beforeFind     = [];
+    protected $afterFind      = [];
+    protected $beforeDelete   = [];
+    protected $afterDelete    = [];
+}?>
+
+=====================================================================
+
+BUKA MODELS UNTUK CONFIGURASI
+ buka vendor / ci-4 / system / model.php
+====> Buka Model.php
+// jika di model sudah di tulis maka biarkan default
+protected $table;
+
+// primary key harus sesuai dengan table database
+// jika primary key berbeda maka harus di timpa di model
+// protected $primaryKey = 'contoh nim'; (di model) yang di sini biarkan
+protected $primaryKey = 'id';
+
+=== yang ada di sini adalah data default jika ada yang berbeda maka harus di timpa pada model
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

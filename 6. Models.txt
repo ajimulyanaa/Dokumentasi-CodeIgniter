@@ -1,0 +1,236 @@
+Models merupakan tempat dimana untuk memodelkan database
+ ?? buat database jangan pakai spasi agar memudahkan
+
+1. Buat controller
+    Komik.php 
+
+=====================================================================================
+<?php
+
+namespace App\Controllers;
+
+class Komik extends BaseController
+{
+    public function index(): string
+    {
+        $data=[
+            'title'=>'Daftar Komik',
+        ];
+        return view('komik/index',$data);
+        // echo "hello world";
+        
+    }
+
+}
+
+======================================================================================
+
+2. Buat views
+   komik.php
+ // buat sesuai keinginan template apabila data ingin dalam bentuk tabel maka buat tabelnya
+
+??? agar memudahkan styling makan buat file css di public kemudian hubungkan link css pada bagian tempalate
+
+
+    /// css untuk membuat item berada di tengah secara vertikal 
+        vertikal-align : middle;
+
+3. Buat data base (PHP my admin)
+
+- buat database baru
+- buat table baru
+ contoh 
+      id/int/primary/auto-increment
+      judul / varchar 255
+      slug / varchar 255
+      penulis / varchar 255
+      penerbit / varchar 255
+      sampul / varchar 255
+      created-at /date-time / null (boleh kosong)
+      upadte-time / date-time / null (boleh kosong)
+ ?? fitur ci4 sudah mendukung kapan data tersebut dibuat dan kapan data tersebaut di update/dihapus
+
+4. configurasi .env
+	1. base url
+   app.baseURL = 'http://localhost:8080' / sesuai url server
+	2. configurasi database (hilangkan semua komentarnya)
+database.default.hostname = localhost
+# alternatif bila localhost tidak jalan
+# database.default.hostname = 127.0.0.1
+# jangan di spasi
+database.default.database = ci-4wpu (nama database)
+atabase.default.username = root (username xmapp (default)
+# password xampp kosong kecuali mampp 'root'
+database.default.password = 
+database.default.DBDriver = MySQLi
+database.default.DBPrefix =
+database.default.port = 3306
+
+5. Buat Models 
+  App> Models
+    komikModel.php
+    ///??? baca dokumentasi tentang model ci-4
+https://codeigniter.com/user_guide/models/model.html
+ ==> lihat pada bagian creating your model
+
+class model 
+============================================================================
+<?php
+
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class UserModel extends Model
+{
+    // ...sintaks
+}
+
+==========================================================================
+<?php
+
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class UserModel extends Model
+{
+    // ...
+	// connect database
+  protected $DBGroup = 'group_name'; (nama database )
+ // masih banyak lagi konfigurasi baca aja bos
+// jika tidak ditulis disini maka kan memakai konfigurasi default jika ingin memakai konfigurasi samakan konfigurasi pada model dengan data basen(parent kelas Model)
+===> melihant konfigurasi default mode ( namespace Models ) pergi ke : vendor > codeigniter4 > system > Model .php
+ lihat setiap baris dengan tanda @var string
+
+?? jika tidak ingin menggunakan konfigurasi default maka timpa code di sini 
+contoh : protected $primaryKey = 'nisn';
+
+
+}
+
+=======================================================================
+
+6. Cara connect dengan model
+ buka conroler 
+    Komik.php
+
+//  cara-1 (hanya bisa diakses dalam class index)
+========================================
+<?php
+
+namespace App\Controllers;
+
+class Komik extends BaseController
+{
+    public function index(): string
+
+    {
+        $data=[
+            'title'=>'Daftar Komik',
+        ];
+$komik = $new \App\Models\komikModel.php
+        return view('komik/index',$data);
+        // echo "hello world";
+        
+    }
+
+}
+
+=======================================
+
+//cara-2 (lebih mudah dalam penulisan)
+======================================
+<?php
+
+namespace App\Controllers;
+use App\Models\KomikModel;
+
+class Komik extends BaseController
+{
+    public function index(): string
+    {
+        $data=[
+            'title'=>'Daftar Komik',
+        ];
+$komikModel = new KomikModel();
+        return view('komik/index',$data);
+        // echo "hello world";
+        
+    }
+
+}
+
+====================================
+
+//cara-3 (rekomend karena bisa digunakan global di dalam controller)
+
+==================================
+
+<?php
+
+namespace App\Controllers;
+use App\Models\KomikModel;
+
+class Komik extends BaseController
+{
+    protected $komikModel;
+    public function __construct(){
+        $this->komikModel = new KomikModel();
+    }
+    public function index(): string
+    {
+//data base-3 untuk tampil
+    $   $komik = $this->komikModel->findAll();
+        $data=[
+            'title'=>'Daftar Komik',
+		'komik' => $komik
+        ];
+
+
+        return view('komik/index',$data);
+        // echo "hello world";
+        
+    }
+
+}
+
+==================================
+// cara-4 simpan dai base controller agar dapat diakses oleh semua controller (bisa diakses semua controller)
+ buka conrroller > basecontroler 
+
+?tulis
+$this->komikmodel=new \App\Models\komikmodel();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
