@@ -13,3 +13,27 @@ UPDATE CI 4.4 itu gak bisa akses controller dan method secara langsung mungkin k
 
 tambahkan ke Config/Routes.php
 $routes->setAutoRoute(true);
+
+
+
+===========================================================================
+Solved masalah ini
+
+Unable to connect to the database. Main connection [MySQLi]: Access denied for user ''@'localhost' (using password: ****)
+
+buka xampp > MySql > config > my.ini
+
+buka file php.ini
+
+kemudian tambakan
+skip-grant-tables=TRUE
+disini ......
+#skip-networking
+#skip-federated
+skip-grant-tables=TRUE
+
+SOLVED
+===============================
+Untuk mengakses file public ini alamatnay
+contoh file img
+src='/img/nama.jpg'
